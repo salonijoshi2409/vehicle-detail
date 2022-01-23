@@ -1,0 +1,83 @@
+body {
+  background-image: url("/static/images/bg3.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+ 
+}
+.dot {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.ic{
+  font-size:36px;
+  display: inline-block;
+ 
+}
+.navclass{
+  font-size: 20px;
+  list-style: none;
+  font-weight: 500;
+}
+.rh{
+  height: 100vh;
+}
+.navbutton{
+  display: none;
+}
+.navcolor{
+  background-color: rgb(111, 163, 223);
+  line-height: 40px;
+}
+.ul1{
+  list-style-type: none;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+}
+.li1{
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 8px 24px;
+  border-top: 2px solid rgb(140, 192, 235);
+  border-bottom: 2px solid rgb(140, 192, 235);
+}
+.li1.active {
+  background-color: rgb(41, 97, 201);
+  color: white;
+  text-decoration: none;
+}
+.li1:hover:not(.active) {
+  background-color:rgb(79, 143, 216);
+  color: white;
+  text-decoration: none;
+}
+.cardcolor{
+  background-color: rgb(173, 238, 173);
+  border:2px solid limegreen
+}
+.errorlist{
+  list-style: none;
+  color: red;
+}
+
+@media only screen and (max-width: 768px) {
+  .navclass {
+    display: none;
+    width: 100%;
+  }
+  .rh{
+    height: auto;
+  }
+  .navbutton{
+    display: block;
+  }
+  .ul1{
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 24px;
+  }
+}

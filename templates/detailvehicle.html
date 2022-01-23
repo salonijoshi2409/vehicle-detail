@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block head %}Vehicle Detail: {{li.name}}{% endblock head %}
+{% block navigation %}
+    <li><a href="/add" class="li1">Add Vehicles</a></li>
+    <li><a href="/" class="li1">List Vehicles</a></li>
+{% endblock navigation %}
+{% block content %}
+    <div class="row justify-content-sm-center">
+            <div class="col-lg-5 d-flex justify-content-center mt-4">
+                <span class="dot mr-4 bg-dark"></span>
+                <div class="card bg-dark text-white d-inline mr-4" style="width:200px">
+                    <div class="card-body text-center">Camera 1</div>
+                </div>
+                <div class="card bg-dark text-white" style="width:200px">
+                    <div class="card-body text-center">Camera 2</div>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-2 d-flex justify-content-center mt-4">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% if li.on_off == False %}
+                        <input type="submit" class="btn btn-danger btn-lg d-inline mr-2" id="off" name="off" value="OFF">
+                    {% else %}
+                        <input type="submit" class="btn btn-outline-danger btn-lg d-inline mr-2" id="off" name="off" value="OFF">
+                    {% endif %}
+                </form>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% if li.on_off == True %}
+                        <input type="submit" class="btn btn-success btn-lg" id="on" name="on" value="ON">
+                    {% else %}
+                        <input type="submit" class="btn btn-outline-success btn-lg" id="on" name="on"  value="ON">
+                    {% endif %}
+                </form>
+            </div>
+            <script>
+                function offFunction() {
+                    document.getElementById('off').className = "btn btn-danger btn-lg d-inline mr-2" ;
+                    document.getElementById('on').className = "btn btn-outline-success btn-lg d-inline mr-2";
+
+                }
+                function onFunction() {
+                    document.getElementById('off').className = "btn btn-outline-danger btn-lg d-inline mr-2" ;
+                    document.getElementById('on').className = "btn btn-success btn-lg d-inline mr-2";
+                }
+            </script>
+    </div>
+    <div class="row justify-content-sm-center" style="font-size:20px">
+        <div class="col-lg-6 d-flex justify-content-center mt-4">
+                <div id="map" style="width:612px; height:324px"></div>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1Ijoic2Fsb25pMjQiLCJhIjoiY2ttbjloNHpqMGZobzJ2cGdwdGQ5NW44NyJ9.l_Re4lNWJpVcox72NztZ4g';
+                    const map = new mapboxgl.Map({
+                    container: 'map', // container ID
+                    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                    center: [72.8777,19.076090], // starting position [lng, lat]
+                    zoom: 9 // starting zoom
+                    });
+                </script>
+        </div>
+        <div class="col-lg-3 mt-4">
+            <div class="row d-flex justify-content-center">
+                <div class="card cardcolor" style="width:290px; height:150px">
+                    <div class="card-body text-center">
+                        <i class="material-icons ic" >speed</i>
+                        <h3 style="display:inline;">Speed</h3>
+                        <br><br>
+                        <h3>{{li.speed}} km/hr</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-4">
+                <div class="card cardcolor" style="width:290px; height:150px">
+                    <div class="card-body text-center">
+                        <i class="material-icons ic" >speed</i>
+                        <h3 style="display:inline;">Average Speed</h3>
+                        <br><br>
+                        <h3 class="text-center">{{li.avgspeed}} km/hr</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-sm-center" style="font-size:20px">
+        <div class="col-lg-3 d-flex justify-content-center mt-4">
+            <div class="card cardcolor" style="width:290px; height:150px">
+                <div class="card-body text-center">
+                    <i class="material-icons ic" >directions_car</i>
+                    <h3 style="display:inline;">Engine Status</h3>
+                    <br><br>
+                    <h3 class="text-center">{{li.enginestat}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 d-flex justify-content-center mt-4">
+            <div class="card cardcolor" style="width:290px; height:150px">
+                <div class="card-body text-center">
+                    <i class="material-icons ic" >local_gas_station</i>
+                    <h3 style="display:inline;">Fuel Level</h3>
+                    <br><br>
+                    <h3 class="text-center">{{li.fuellev}} %</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 d-flex justify-content-center mt-4">
+            <div class="card cardcolor" style="width:290px; height:150px">
+                <div class="card-body text-center">
+                        <i class="material-icons ic">thermostat</i>
+                        <h3 style="display:inline;">Temperature</h3>
+                        <br><br>
+                        <h3 class="text-center">{{li.temp}}&#8451;</h3>
+                        <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ 
+{% endblock content %}

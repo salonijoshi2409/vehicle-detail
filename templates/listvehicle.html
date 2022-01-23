@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head %}Vehicles List{% endblock head %}
+{% block navigation %}
+    <li><a href="/add" class="li1">Add Vehicles</a></li>
+    <li><a href="/" class="li1 active">List Vehicles</a></li>
+{% endblock navigation %}
+{% block content %}
+    <div class="row justify-content-sm-center mt-5">
+        <div class="col-sm-8">
+            <h6>Click the vehicle to view more details about it</h6>
+            <br>
+            {% if vehicles %}
+            <table class="table table-hover text-center bg-light" style="font-size: 20px;">
+                <thead>
+                <tr>
+                    <th>Vehicles List</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for vehicle in vehicles%}
+                    <tr>
+                        <td><a href="{% url 'detail' vehicle.id %}">{{vehicle.name}}</a></td>
+                        <td>
+                        <a class="btn btn-warning" href="{% url 'update' vehicle.id %}">Update</a>
+                        <form action="{% url 'delete' vehicle.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete"> 
+                        </form>
+                        </td>
+                    </tr>
+                    </tbody>
+            
+                {% endfor %}
+        
+    
+            {% endif %}   
+            </table>
+        </div>
+    </div>                       
+                           
+{% endblock content %}

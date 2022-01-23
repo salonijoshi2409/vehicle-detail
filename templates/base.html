@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Vehicles</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row rh">
+                <div class="col-md-3 pt-4 col-lg-2 p-0 navcolor">
+                    <h1 class="p-4 d-inline" ><a href="/" style="color:white">Logo</a></h1>
+                    <button class="btn float-right navbutton" onclick="myFunction1()"><i class="material-icons" style="color: white; font-size: 36px" >dehaze</i></button>
+                   <div class="navclass" id="navclass">
+                    <ul class="ul1">
+                        {% block navigation %}
+                        {% endblock navigation %}
+                    </ul>
+                   </div>
+                  
+                </div>
+                
+                <div class="col-md-9 col-lg-10">
+                    <div class="row p-3 text-white" style="background-color: rgb(41, 97, 201);">
+                        <div class="col-sm-12">
+                            <h1 class="text-center">{% block head %}{% endblock head %}</h1>
+                        </div>
+                    </div>
+                    
+                    <script>
+                        function myFunction1() {
+                          var x = document.getElementById("navclass");
+                          if (x.style.display == "") {
+                            x.style.display = "block";
+                          } 
+                          else if (x.style.display == "none") {
+                            x.style.display = "block";
+                          }
+                          else {
+                            x.style.display = "none";
+                          }
+                        }
+                    </script>
+                            {% block content %}
+                            {% endblock  %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

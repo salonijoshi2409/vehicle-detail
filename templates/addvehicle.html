@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block head %}Add/Update Vehicles{% endblock head %}
+{% block navigation %}
+    <li><a href="/add" class="li1 active">Add Vehicles</a></li>
+    <li><a href="/" class="li1">List Vehicles</a></li>
+{% endblock navigation %}
+    {% block content %} 
+            <div class="row justify-content-sm-center mt-5">
+                    <div class="col-sm-6">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags %}
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{message}}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                        <form action="" method="POST" style="font-weight:500">
+                            {% csrf_token %}
+                            {% for field in vech %}
+                                {{field.label_tag}} {{field}}
+                                <span class="errorlist">{{field.errors}}</span>
+                            <br>
+                            {% endfor %}
+                            <div class="float-right">
+                            <input type="submit" value="Submit" class="btn btn-primary active">
+                            </div>
+                        </form>
+                    </div>
+            </div>
+    {% endblock content %}
